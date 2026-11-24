@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forensic Accounting & Fraud Analytics Suite</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 24px;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+    /* Tab Bar Navigation */
+    .tab-bar {
+      display: flex;
+      background-color: #f1f5f9;
+      border-bottom: 2px solid #cbd5e1;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 12px 14px;
+      border: none;
+      background: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .tab-btn:hover {
+      background-color: #e2e8f0;
+      color: #0f172a;
+    }
+    .tab-btn.active {
+      background-color: #ffffff;
+      color: #1d4ed8;
+      border-bottom: 3px solid #1d4ed8;
+      margin-bottom: -2px;
+    }
+    .content-area {
+      padding: 24px;
+    }
+    h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+    .p1-title { color: #1e3a8a; }
+    .p2-title { color: #0f766e; }
+    .subtitle {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 0;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+    /* Simple Input Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    td {
+      padding: 9px 6px;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 13.5px;
+      vertical-align: middle;
+    }
+    td.label-col {
+      width: 44%;
+      color: #334155;
+    }
+    select {
+      width: 100%;
+      padding: 7px 9px;
+      font-size: 13px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background-color: #fff;
+      color: #1e293b;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+    select:focus {
+      outline: none;
+      border-color: #2563eb;
+    }
+    /* Results Box */
+    .results-box {
+      padding: 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .p1-box {
+      background-color: #eff6ff;
+      border-left: 5px solid #2563eb;
+    }
+    .p2-box {
+      background-color: #f0fdfa;
+      border-left: 5px solid #0f766e;
+    }
+    .results-box p {
+      margin: 6px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+    .total-cost {
+      color: #b91c1c;
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #cbd5e1;
+      margin: 10px 0;
+    }
+    .footer-note {
+      margin-top: 18px;
+      font-size: 11.5px;
+      color: #94a3b8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <!-- Top Tab Navigation -->
+    <div class="tab-bar">
+      <button id="tab1-btn" class="tab-btn active" onclick="showTab(1)">
+        Project 1: Fraud Risk Estimator
+      </button>
+      <button id="tab2-btn" class="tab-btn" onclick="showTab(2)">
+        Project 2: Ghost Payroll Calculator
+      </button>
+    </div>
+
+    <div class="content-area">
+      <!-- ============================================== -->
+      <!-- Project 1: Occupational Fraud Risk & Loss -->
+      <!-- ============================================== -->
+      <div id="project1-panel">
+        <h2 class="p1-title">Occupational Fraud Risk &amp; Loss Estimator</h2>
+        <p class="subtitle">
+          Based on Donald Cressey's Fraud Triangle and ACFE benchmarks. Select four internal variables to assess overall risk and estimated financial leakage.
+        </p>
+
+        <table>
+          <tbody>
+            <tr>
+              <td class="label-col"><strong>1. Opportunity / Controls:</strong></td>
+              <td>
+                <select id="p1-opp" onchange="runProject1()">
+                  <option value="10">Strong Segregation of Duties</option>
+                  <option value="25" selected>Moderate Controls (Periodic Review)</option>
+                  <option value="45">Weak Controls (Single Person Approvals)</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-col"><strong>2. Incentive / Pressure:</strong></td>
+              <td>
+                <select id="p1-pres" onchange="runProject1()">
+                  <option value="10">Low Pressure (Competitive Wages)</option>
+                  <option value="25" selected>Moderate Pressure (Aggressive Targets)</option>
+                  <option value="35">High Pressure (Severe Financial Distress)</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-col"><strong>3. Rationalization / Tone:</strong></td>
+              <td>
+                <select id="p1-tone" onchange="runProject1()">
+                  <option value="5">Strong Ethical Culture</option>
+                  <option value="15" selected>Tolerant of Minor Policy Bypasses</option>
+                  <option value="20">Frequent Management Override</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-col"><strong>4. Detection Mechanism:</strong></td>
+              <td>
+                <select id="p1-detect" onchange="runProject1()">
+                  <option value="1.0">Continuous Automated Monitoring</option>
+                  <option value="1.5" selected>Annual External Audit Only</option>
+                  <option value="2.2">Informal / Tip-Line Only</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="results-box p1-box">
+          <p>
+            <span>Total Fraud Risk Score:</span>
+            <span><strong id="p1-out-score">--</strong> / 100</span>
+          </p>
+          <p>
+            <span>Vulnerability Level:</span>
+            <span id="p1-out-badge" class="badge">--</span>
+          </p>
+          <p>
+            <span>Estimated Detection Time:</span>
+            <strong id="p1-out-time">--</strong>
+          </p>
+          <p>
+            <span>Estimated Median Loss Exposure:</span>
+            <strong id="p1-out-loss" style="font-size: 1.15em; color: #1e3a8a;">--</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- Project 2: Ghost Employee Payroll Calculator   -->
+      <!-- ============================================== -->
+      <div id="project2-panel" style="display: none;">
+        <h2 class="p2-title">Ghost Employee Payroll Fraud Calculator</h2>
+        <p class="subtitle">
+          Models unearned gross wage misappropriation, lost statutory employer payroll taxes, and added control deficiency penalties.
+        </p>
+
+        <table>
+          <tbody>
+            <tr>
+              <td class="label-col"><strong>1. Ghost Employees:</strong></td>
+              <td>
+                <select id="p2-count" onchange="runProject2()">
+                  <option value="1">1 Ghost Employee</option>
+                  <option value="2" selected>2 Ghost Employees</option>
+                  <option value="5">5 Ghost Employees</option>
+                  <option value="10">10 Ghost Employees</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-col"><strong>2. Average Annual Salary:</strong></td>
+              <td>
+                <select id="p2-salary" onchange="runProject2()">
+                  <option value="40000">$40,000 / year (Entry-Level)</option>
+                  <option value="65000" selected>$65,000 / year (Mid-Level)</option>
+                  <option value="110000">$110,000 / year (Management Tier)</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-col"><strong>3. Undetected Duration:</strong></td>
+              <td>
+                <select id="p2-duration" onchange="runProject2()">
+                  <option value="0.5">6 Months (0.5 Years)</option>
+                  <option value="1.0" selected>12 Months (1.0 Year)</option>
+                  <option value="2.0">24 Months (2.0 Years - ACFE Median)</option>
+                  <option value="3.0">36 Months (3.0 Years)</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="label-col"><strong>4. Internal Control Quality:</strong></td>
+              <td>
+                <select id="p2-controls" onchange="runProject2()">
+                  <option value="0.0">Strong (Independent direct deposit matching)</option>
+                  <option value="0.10" selected>Moderate (Manual register review)</option>
+                  <option value="0.25">Weak (Supervisor approves &amp; distributes checks)</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="results-box p2-box">
+          <p>
+            <span>Direct Stolen Wages:</span>
+            <strong id="p2-out-direct">--</strong>
+          </p>
+          <p>
+            <span>Employer Tax &amp; Benefit Burden (20%):</span>
+            <strong id="p2-out-tax">--</strong>
+          </p>
+          <p>
+            <span>Added Control Failure Penalties:</span>
+            <strong id="p2-out-penalties">--</strong>
+          </p>
+          <hr class="divider">
+          <p>
+            <span>Total Financial Leakage:</span>
+            <span id="p2-out-total" class="total-cost">--</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        Accounting &amp; Auditing IS Educational Interactive &bull; Modeled for Forensic Fraud Analysis
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching logic
+    function showTab(num) {
+      const p1 = document.getElementById('project1-panel');
+      const p2 = document.getElementById('project2-panel');
+      const btn1 = document.getElementById('tab1-btn');
+      const btn2 = document.getElementById('tab2-btn');
+
+      if (num === 1) {
+        p1.style.display = 'block';
+        p2.style.display = 'none';
+        btn1.classList.add('active');
+        btn2.classList.remove('active');
+        runProject1();
+      } else {
+        p1.style.display = 'none';
+        p2.style.display = 'block';
+        btn2.classList.add('active');
+        btn1.classList.remove('active');
+        runProject2();
+      }
+    }
+
+    // Currency Formatter
+    function formatCurrency(amount) {
+      return '$' + Math.round(amount).toLocaleString('en-US');
+    }
+
+    // Calculations for Project 1: Fraud Triangle Risk & Loss Estimator
+    function runProject1() {
+      const opp = parseFloat(document.getElementById('p1-opp').value);
+      const pres = parseFloat(document.getElementById('p1-pres').value);
+      const tone = parseFloat(document.getElementById('p1-tone').value);
+      const detectMult = parseFloat(document.getElementById('p1-detect').value);
+
+      const score = opp + pres + tone;
+      document.getElementById('p1-out-score').innerText = score;
+
+      let level = "Low Risk";
+      let badgeBg = "#16a34a"; // Green
+      let duration = Math.round(6 * detectMult);
+      let lossRange = "$30,000 - $60,000";
+
+      if (score > 65) {
+        level = "High Risk";
+        badgeBg = "#dc2626"; // Red
+        duration = Math.round(18 * detectMult);
+        lossRange = "$250,000 - $600,000";
+      } else if (score >= 40) {
+        level = "Moderate Risk";
+        badgeBg = "#d97706"; // Amber
+        duration = Math.round(12 * detectMult);
+        lossRange = "$115,000 - $180,000";
+      }
+
+      const badge = document.getElementById('p1-out-badge');
+      badge.innerText = level;
+      badge.style.backgroundColor = badgeBg;
+
+      document.getElementById('p1-out-time').innerText = duration + " months";
+      document.getElementById('p1-out-loss').innerText = lossRange;
+    }
+
+    // Calculations for Project 2: Ghost Payroll Calculator
+    function runProject2() {
+      const count = parseInt(document.getElementById('p2-count').value, 10);
+      const salary = parseFloat(document.getElementById('p2-salary').value);
+      const years = parseFloat(document.getElementById('p2-duration').value);
+      const penaltyRate = parseFloat(document.getElementById('p2-controls').value);
+
+      const directWages = count * salary * years;
+      const employerTaxes = directWages * 0.20; // 20% employer FICA, Medicare & benefits burden
+      const penalties = directWages * penaltyRate;
+      const totalLeakage = directWages + employerTaxes + penalties;
+
+      document.getElementById('p2-out-direct').innerText = formatCurrency(directWages);
+      document.getElementById('p2-out-tax').innerText = formatCurrency(employerTaxes);
+      document.getElementById('p2-out-penalties').innerText = formatCurrency(penalties);
+      document.getElementById('p2-out-total').innerText = formatCurrency(totalLeakage);
+    }
+
+    // Initialize both on window load
+    window.onload = function() {
+      runProject1();
+      runProject2();
+    };
+  </script>
+</body>
+</html>
